@@ -43,10 +43,10 @@ namespace ShelterApi.Controllers.v2
             if(personality != null)
             {
                 dogQuery = dogQuery.Where(entry => entry.Personality.Contains(personality) == true);
-                // if(dogQuery == null)
-                // {
-                //     return NotFound();
-                // }
+                if( !dogQuery.Any())
+                {
+                    return NotFound();
+                }
             }
             return await dogQuery.ToListAsync();
         }

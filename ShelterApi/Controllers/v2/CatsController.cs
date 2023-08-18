@@ -43,6 +43,10 @@ namespace ShelterApi.Controllers.v2
             if(personality !=null)
             {
                 catQuery = catQuery.Where(entry => entry.Personality.Contains(personality) == true);
+                if( !catQuery.Any())
+                {
+                    return NotFound();
+                }
             }
             return await catQuery.ToListAsync();
         }

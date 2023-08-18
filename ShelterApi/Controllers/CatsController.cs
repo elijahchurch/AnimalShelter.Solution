@@ -67,6 +67,19 @@ namespace ShelterApi.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCat(int id)
+        {
+            Cat cat = await _db.Cats.FindAsync(id);
+            if (cat == null)
+            {
+                return NotFound();
+            }
+            _db.Cats.Remove(cat);
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
         private bool CatExists(int id)
         {
             return _db.Cats.Any(entry => entry.CatId == id);

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShelterApi.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialWithIntAges : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,6 +74,31 @@ namespace ShelterApi.Migrations
                     table.PrimaryKey("PK_Users", x => x.UserId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "Cats",
+                columns: new[] { "CatId", "Age", "Gender", "HealthSocialNeeds", "Name", "Personality" },
+                values: new object[,]
+                {
+                    { 1, 3, "Female", "Need time to adjust to new environment.", "Dinky", "Sensitive, shy, worried around new people and environements" },
+                    { 2, 4, "Male", "None.", "Chester", "Affectionate" },
+                    { 3, 5, "Male", "Deaf. Should be in a home with no other pets.", "Trooper", "Loud and friendly!" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Dogs",
+                columns: new[] { "DogId", "Age", "Gender", "HealthSocialNeeds", "Name", "Personality" },
+                values: new object[,]
+                {
+                    { 1, 1, "Male", "Would do best in an environment with older children.", "Houdini", "High Energy and Goofy!" },
+                    { 2, 2, "Male", "While not needed, would do better in a home that has another dog for him to play with.", "Jelly Bean", "Very Social" },
+                    { 3, 7, "Female", "Blind. Would do better in an environment with no children", "Farrah", "Shy and Nervous" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "EmailAddress", "Password", "UserName" },
+                values: new object[] { 1, "TestUser@gmail.com", "Test", "TestUser" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,7 +10,7 @@ namespace ShelterApi.Models
         [Required]
         public string Gender { get; set;}
         [Required]
-        public string Age { get; set;}
+        public int Age { get; set;}
         [Required]
         public string Personality { get; set;}
         public string HealthSocialNeeds { get; set;}

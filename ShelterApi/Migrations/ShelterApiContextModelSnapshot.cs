@@ -24,9 +24,8 @@ namespace ShelterApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -51,7 +50,7 @@ namespace ShelterApi.Migrations
                         new
                         {
                             CatId = 1,
-                            Age = "3m",
+                            Age = 3,
                             Gender = "Female",
                             HealthSocialNeeds = "Need time to adjust to new environment.",
                             Name = "Dinky",
@@ -60,7 +59,7 @@ namespace ShelterApi.Migrations
                         new
                         {
                             CatId = 2,
-                            Age = "2y 3m",
+                            Age = 4,
                             Gender = "Male",
                             HealthSocialNeeds = "None.",
                             Name = "Chester",
@@ -69,7 +68,7 @@ namespace ShelterApi.Migrations
                         new
                         {
                             CatId = 3,
-                            Age = "8y",
+                            Age = 5,
                             Gender = "Male",
                             HealthSocialNeeds = "Deaf. Should be in a home with no other pets.",
                             Name = "Trooper",
@@ -83,9 +82,8 @@ namespace ShelterApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -110,7 +108,7 @@ namespace ShelterApi.Migrations
                         new
                         {
                             DogId = 1,
-                            Age = "1y 8m",
+                            Age = 1,
                             Gender = "Male",
                             HealthSocialNeeds = "Would do best in an environment with older children.",
                             Name = "Houdini",
@@ -119,7 +117,7 @@ namespace ShelterApi.Migrations
                         new
                         {
                             DogId = 2,
-                            Age = "2y 4m",
+                            Age = 2,
                             Gender = "Male",
                             HealthSocialNeeds = "While not needed, would do better in a home that has another dog for him to play with.",
                             Name = "Jelly Bean",
@@ -128,7 +126,7 @@ namespace ShelterApi.Migrations
                         new
                         {
                             DogId = 3,
-                            Age = "7y",
+                            Age = 7,
                             Gender = "Female",
                             HealthSocialNeeds = "Blind. Would do better in an environment with no children",
                             Name = "Farrah",

@@ -2,61 +2,61 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShelterApi.Models;
 
-namespace ShelterApi.Controllers
+namespace ShelterApi.Controllers.v1
 {
     [Route("shelterapi/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
-    [ApiVersion("2.0")]
+    // [ApiVersion("2.0")]
     [ApiController]
-    public class CatsController : ControllerBase
+    public class DogsController : ControllerBase
     {
         private readonly ShelterApiContext _db;
-        public CatsController(ShelterApiContext db)
+        public DogsController(ShelterApiContext db)
         {
             _db = db;
         }
 
-        [MapToApiVersion("1.0")]
+        // [MapToApiVersion("1.0")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cat>>> Get()
+        public async Task<ActionResult<IEnumerable<Dog>>> Get()
         {
-            return await _db.Cats.ToListAsync();
+            return await _db.Dogs.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cat>> GetCat(int id)
+        public async Task<ActionResult<Dog>> GetDog(int id)
         {
-            Cat cat = await _db.Cats.FindAsync(id);
-            if ( cat == null)
+            Dog dog = await _db.Dogs.FindAsync(id);
+            if ( dog == null)
             {
                 return NotFound();
             }
-            return cat;
+            return dog;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Cat>> Post(Cat cat)
+        public async Task<ActionResult<Dog>> Post(Dog dog)
         {
-            _db.Cats.Add(cat);
+            _db.Dogs.Add(dog);
             await _db.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetCat), new { id = cat.CatId}, cat);
+            return CreatedAtAction(nameof(GetDog), new { id = dog.DogId}, dog);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Cat cat)
+        public async Task<IActionResult> Put(int id, Dog dog)
         {
-            if (id != cat.CatId)
+            if (id != dog.DogId)
             {
                 return BadRequest();
             }
-            _db.Cats.Update(cat);
+            _db.Dogs.Update(dog);
             try
             {
                 await _db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CatExists(id))
+                if (!DogExists(id))
                 {
                     return NotFound();
                 }
@@ -68,21 +68,21 @@ namespace ShelterApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCat(int id)
+        public async Task<IActionResult> DeleteDog(int id)
         {
-            Cat cat = await _db.Cats.FindAsync(id);
-            if (cat == null)
+            Dog dog = await _db.Dogs.FindAsync(id);
+            if (dog == null)
             {
                 return NotFound();
             }
-            _db.Cats.Remove(cat);
+            _db.Dogs.Remove(dog);
             await _db.SaveChangesAsync();
             return NoContent();
         }
 
-        private bool CatExists(int id)
+        private bool DogExists(int id)
         {
-            return _db.Cats.Any(entry => entry.CatId == id);
+            return _db.Dogs.Any(entry => entry.DogId == id);
         }
     }
 }

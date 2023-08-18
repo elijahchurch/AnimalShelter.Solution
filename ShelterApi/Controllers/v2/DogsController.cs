@@ -1,11 +1,11 @@
+using System.Security.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShelterApi.Models;
 
-namespace ShelterApi.Controllers
+namespace ShelterApi.Controllers.v2
 {
     [Route("shelterapi/v{version:apiVersion}/[controller]")]
-    [ApiVersion("1.0")]
     [ApiVersion("2.0")]
     [ApiController]
     public class DogsController : ControllerBase
@@ -16,11 +16,28 @@ namespace ShelterApi.Controllers
             _db = db;
         }
 
-        [MapToApiVersion("1.0")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Dog>>> Get()
+        public async Task<ActionResult<IEnumerable<Dog>>> Get(string name, string gender, string personality)
         {
-            return await _db.Dogs.ToListAsync();
+            IQueryable<Dog> dogQuery = _db.Dogs.AsQueryable();
+
+            if (name != null)
+            {
+                dogQuery = dogQuery.Where(entry => entry.Name == name);
+            }
+            if (gender != null)
+            {
+                dogQuery = dogQuery.Where(entry => entry.Gender == gender);
+            }
+            if(personality != null)
+            {
+                dogQuery = dogQuery.Where(entry => entry.Personality.Contains(personality) == true);
+                // if(dogQuery == null)
+                // {
+                //     return NotFound();
+                // }
+            }
+            return await dogQuery.ToListAsync();
         }
 
         [HttpGet("{id}")]

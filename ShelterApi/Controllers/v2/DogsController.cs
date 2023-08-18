@@ -16,7 +16,7 @@ namespace ShelterApi.Controllers.v2
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Dog>>> Get(string name, string gender, string personality)
+        public async Task<ActionResult<IEnumerable<Dog>>> Get(string name, string gender, string personality, int age, int minAge, int maxAge)
         {
             IQueryable<Dog> dogQuery = _db.Dogs.AsQueryable();
 
@@ -27,6 +27,18 @@ namespace ShelterApi.Controllers.v2
             if (gender != null)
             {
                 dogQuery = dogQuery.Where(entry => entry.Gender == gender);
+            }
+            if (age != 0)
+            {
+                dogQuery = dogQuery.Where(entry => entry.Age == age);
+            }
+            if (minAge > 0)
+            {
+                dogQuery = dogQuery.Where(entry => entry.Age >= minAge);
+            }
+            if (maxAge != 0)
+            {
+                dogQuery = dogQuery.Where(entry => entry.Age <= maxAge);
             }
             if(personality != null)
             {

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShelterApi.Models;
@@ -6,6 +7,7 @@ namespace ShelterApi.Controllers.v2
 {
     [Route("shelterapi/v{version:apiVersion}/[controller]")]
     [ApiVersion("2.0")]
+    [Authorize]
     [ApiController]
     public class CatsController : ControllerBase
     {

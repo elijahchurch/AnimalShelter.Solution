@@ -8,6 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Versioning
+builder.Services.AddApiVersioning(opt =>
+                {
+                    opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1,0);
+                    opt.AssumeDefaultVersionWhenUnspecified = true;
+                    opt.ReportApiVersions = true;
+                });
+
 builder.Services.AddDbContext<ShelterApiContext>(
             dbContextOptions => dbContextOptions
                 .UseMySql(

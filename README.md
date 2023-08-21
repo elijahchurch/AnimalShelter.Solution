@@ -40,7 +40,7 @@ These are the various endpoints for the animal shelter API:
 * GET http://localhost:5000/shelterapi/v1/dogs/{id}<br>
 --> Receive information for one dog by locating it with its id #, which is added as the variable {id} at the end of this URL.
 * POST http://localhost:5000/shelterapi/v1/dogs<br>
---> Create a dog entry in the database. You will need to include information for the dog in this syntax in the body of this POST:<br>
+--> Create a dog entry in the database. You will need to include information for the dog with this syntax in the body of this POST:<br>
 {<br>
     "name": "DOG-NAME",<br>
     "gender": "DOG-GENDER",<br>
@@ -63,14 +63,14 @@ These are the various endpoints for the animal shelter API:
 <br>
 
 * DELETE http://localhost:5000/shelterapi/v1/dogs/{id}
---> Deletes a dog entry from the database. {id} as a variable stand in for the ID of the dog in the databse and is added to the end of the URL.
+--> Deletes a dog entry from the database. {id} is a variable stand in for the ID of the dog in the databse and is added to the end of the URL.
 
 * GET http://localhost:5000/shelterapi/v1/cats <br>
 --> Receive a JSON response of all cat entries in the database
 * GET http://localhost:5000/shelterapi/v1/cats/{id}<br>
 --> Receive information for one cat by locating it with its id #, which is added as the variable {id} at the end of this URL.
 * POST http://localhost:5000/shelterapi/v1/cats<br>
---> Create a cat entry in the database. You will need to include information for the cat in this syntax in the body of this POST:<br>
+--> Create a cat entry in the database. You will need to include information for the cat with this syntax in the body of this POST:<br>
 {<br>
     "name": "CAT-NAME",<br>
     "gender": "CAT-GENDER",<br>
@@ -93,7 +93,7 @@ These are the various endpoints for the animal shelter API:
 <br>
 
 * DELETE http://localhost:5000/shelterapi/v1/cats/{id}
---> Deletes a cat entry from the database. {id} as a variable stand in for the ID of the cat in the databse and is added to the end of the URL.
+--> Deletes a cat entry from the database. {id} is a variable stand in for the ID of the cat in the databse and is added to the end of the URL.
 
 With version 2.0, query string parameters can be added to the end of a GET request for either dogs or cats to have a more specified search. A single query can be made by adding a ? to the end of a get request with the paramater name set equal to your search query. Multiple parameters can be added at once by putting a & between each paramater.<br>
 An example of a single parameter query: GET http://localhost:5000/shelterapi/v2/cats?name=Garfield<br>
